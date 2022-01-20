@@ -11,7 +11,7 @@ interface SearchResultsProps {
 export function SearchResults({results}: SearchResultsProps) {
   return (
     <div>
-      {results.map(product => {
+      {results?.map(product => {
         return (
           <ProductItem product={product}/>
         );
