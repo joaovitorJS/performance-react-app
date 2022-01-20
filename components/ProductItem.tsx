@@ -5,7 +5,8 @@ interface ProductItemProps {
     id: number;
     price: number;
     title: string;
-  }
+  };
+  onAddToWishlist: (id: number) => Promise<void>;
 }
 
 /*
@@ -14,15 +15,16 @@ Ele faz a comparação {} === {} onde sempre retorna falso
 Passamos uma função para ele, para verificar se deve ou não renderizar o componente
 */
 
-function ProductItemComponent({ product }: ProductItemProps) {
+function ProductItemComponent({ product,onAddToWishlist }: ProductItemProps) {
   return (
     <div>
       {product.title} - <strong>{product.price}</strong>
+      <button onClick={() => onAddToWishlist(product.id)}>Add to Wishlist</button>
     </div>
   );
 }
 
-function areEqual(prevProps, nextProps) {
+function areEqual(prevProps: Readonly<ProductItemProps>, nextProps: Readonly<ProductItemProps>) {
   return Object.is(prevProps.product, nextProps.product); /*Comparação profunda -> utiliza um pouco mais de processamento*/
 }
 
