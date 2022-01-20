@@ -5,6 +5,7 @@ interface ProductItemProps {
     id: number;
     price: number;
     title: string;
+    priceFormatted: string;
   };
   onAddToWishlist: (id: number) => Promise<void>;
 }
@@ -18,7 +19,7 @@ Passamos uma função para ele, para verificar se deve ou não renderizar o comp
 function ProductItemComponent({ product,onAddToWishlist }: ProductItemProps) {
   return (
     <div>
-      {product.title} - <strong>{product.price}</strong>
+      {product.title} - <strong>{product.priceFormatted}</strong>
       <button onClick={() => onAddToWishlist(product.id)}>Add to Wishlist</button>
     </div>
   );
