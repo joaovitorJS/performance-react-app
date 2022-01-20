@@ -3,6 +3,8 @@ import dynamic from "next/dynamic"; /*Mesmo que o React.lazy() porém  para o SS
 // import { AddProductToWishlist } from "./AddProductToWishlist";
 import { AddProductToWishlistProps } from "./AddProductToWishlist";
 
+import lodash from "lodash";
+
 const AddProductToWishlist = dynamic<AddProductToWishlistProps>(() => {
   return import('./AddProductToWishlist').then(mod => mod.AddProductToWishlist) /*.then para apenas export, para export default não precisa*/
 }, {
@@ -44,7 +46,7 @@ function ProductItemComponent({ product,onAddToWishlist }: ProductItemProps) {
 }
 
 function areEqual(prevProps: Readonly<ProductItemProps>, nextProps: Readonly<ProductItemProps>) {
-  return Object.is(prevProps.product, nextProps.product); /*Comparação profunda -> utiliza um pouco mais de processamento*/
+  return lodash.isEqual(prevProps.product, nextProps.product); /*Comparação profunda -> utiliza um pouco mais de processamento*/
 }
 
 export const ProductItem = memo(ProductItemComponent, areEqual);
